@@ -169,6 +169,7 @@ function trackBoth(event, params){
     display:flex;align-items:center;gap:.4em;margin-bottom:.6em;
   }
   .hero p.lead{font-size:1.1rem;color:var(--muted)}
+  .hero-video-wrap{position:relative}
   .hero video{
     transition:transform .5s ease;
     aspect-ratio:16/9;
@@ -179,6 +180,19 @@ function trackBoth(event, params){
   }
   .hero video:hover{transform:scale(1.015)}
   @media (max-width:860px){ .hero video{max-height:56vh} }
+
+  .hero-sound-btn{
+    position:absolute;right:14px;bottom:14px;z-index:2;
+    display:inline-flex;align-items:center;gap:.5em;
+    background:rgba(43,34,51,.62);color:#fff;border:none;
+    padding:9px 14px;border-radius:999px;cursor:pointer;
+    font-family:inherit;font-weight:600;font-size:.82rem;
+    backdrop-filter:blur(4px);
+    transition:background .18s ease, transform .18s ease;
+  }
+  .hero-sound-btn:hover{background:rgba(43,34,51,.82);transform:translateY(-2px)}
+  .hero-sound-btn.is-on{background:rgba(140,63,146,.85)}
+  @media (max-width:480px){ .hero-sound-btn #heroSoundLabel{display:none} .hero-sound-btn{padding:10px} }
 
   /* franja de autoridad */
   .autoridad{background:var(--accent-ink);color:#fff;padding:16px 0;overflow:hidden}
@@ -382,9 +396,16 @@ function trackBoth(event, params){
         <div class="btn-micro" style="text-align:left">Acceso inmediato · pago único · sin suscripción</div>
       </div>
     </div>
-    <video class="reveal" autoplay muted loop playsinline preload="none" style="border-radius:var(--radius);box-shadow:var(--shadow)" poster="https://res.cloudinary.com/dplhu2z6j/video/upload/so_0,f_jpg,q_auto/v1789505179/hero-video-original.jpg">
-      <source src="https://res.cloudinary.com/dplhu2z6j/video/upload/q_auto/v1789505179/hero-video-original.mp4" type="video/mp4">
-    </video>
+    <div class="hero-video-wrap reveal">
+      <video id="heroVideo" autoplay muted loop playsinline preload="none" style="border-radius:var(--radius);box-shadow:var(--shadow)" poster="https://res.cloudinary.com/dplhu2z6j/video/upload/so_0,f_jpg,q_auto/v1789505179/hero-video-original.jpg">
+        <source src="https://res.cloudinary.com/dplhu2z6j/video/upload/q_auto/v1789505179/hero-video-original.mp4" type="video/mp4">
+      </video>
+      <button type="button" id="heroSoundBtn" class="hero-sound-btn" aria-label="Activar sonido" aria-pressed="false">
+        <svg id="heroSoundIconOff" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5 6 9H3v6h3l5 4V5Z" fill="currentColor"/><path d="M16 8.5c1 1 1 6 0 7M18.5 6c2.2 2.2 2.2 9.8 0 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="17.5" y1="6.5" x2="21.5" y2="17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg id="heroSoundIconOn" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none"><path d="M11 5 6 9H3v6h3l5 4V5Z" fill="currentColor"/><path d="M16 8.5c1 1 1 6 0 7M18.5 6c2.2 2.2 2.2 9.8 0 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span id="heroSoundLabel">Activar sonido</span>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -785,6 +806,27 @@ function trackBoth(event, params){
       }
     });
   });
+
+  // sonido del video del hero — los navegadores bloquean el autoplay con sonido,
+  // así que arranca muted y este botón lo activa con la primera interacción real del usuario
+  (function(){
+    var v = document.getElementById('heroVideo');
+    var btn = document.getElementById('heroSoundBtn');
+    var iconOff = document.getElementById('heroSoundIconOff');
+    var iconOn = document.getElementById('heroSoundIconOn');
+    var label = document.getElementById('heroSoundLabel');
+    if (!v || !btn) return;
+    btn.addEventListener('click', function(){
+      var turningOn = v.muted;
+      v.muted = !turningOn;
+      if (turningOn) { v.play().catch(function(){}); }
+      btn.classList.toggle('is-on', turningOn);
+      btn.setAttribute('aria-pressed', turningOn ? 'true' : 'false');
+      iconOff.style.display = turningOn ? 'none' : '';
+      iconOn.style.display = turningOn ? '' : 'none';
+      label.textContent = turningOn ? 'Silenciar' : 'Activar sonido';
+    });
+  })();
 </script>
 
 </body>
