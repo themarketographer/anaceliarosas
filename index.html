@@ -169,8 +169,16 @@ function trackBoth(event, params){
     display:flex;align-items:center;gap:.4em;margin-bottom:.6em;
   }
   .hero p.lead{font-size:1.1rem;color:var(--muted)}
-  .hero video{transition:transform .5s ease}
+  .hero video{
+    transition:transform .5s ease;
+    aspect-ratio:16/9;
+    width:100%;
+    height:auto;
+    max-height:min(60vh,480px);
+    object-fit:cover;
+  }
   .hero video:hover{transform:scale(1.015)}
+  @media (max-width:860px){ .hero video{max-height:56vh} }
 
   /* franja de autoridad */
   .autoridad{background:var(--accent-ink);color:#fff;padding:16px 0;overflow:hidden}
@@ -374,8 +382,8 @@ function trackBoth(event, params){
         <div class="btn-micro" style="text-align:left">Acceso inmediato · pago único · sin suscripción</div>
       </div>
     </div>
-    <video class="reveal" autoplay muted loop playsinline preload="none" style="border-radius:var(--radius);box-shadow:var(--shadow)" poster="https://res.cloudinary.com/dplhu2z6j/video/upload/c_fill,w_720,h_1280,so_0,f_jpg,q_auto/v1789249742/hero-video.jpg">
-      <source src="https://res.cloudinary.com/dplhu2z6j/video/upload/q_auto/v1789249742/hero-video.mp4" type="video/mp4">
+    <video class="reveal" autoplay muted loop playsinline preload="none" style="border-radius:var(--radius);box-shadow:var(--shadow)" poster="https://res.cloudinary.com/dplhu2z6j/video/upload/so_0,f_jpg,q_auto/v1789505179/hero-video-original.jpg">
+      <source src="https://res.cloudinary.com/dplhu2z6j/video/upload/q_auto/v1789505179/hero-video-original.mp4" type="video/mp4">
     </video>
   </div>
 </section>
