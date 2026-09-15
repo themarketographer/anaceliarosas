@@ -245,15 +245,22 @@ function trackBoth(event, params){
   @media (max-width:920px){ .modulos-grid{grid-template-columns:repeat(2,1fr)} }
   @media (max-width:520px){ .modulos-grid{grid-template-columns:1fr} }
   .modulo-card{
-    background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 14px 20px;
     text-align:center;box-shadow:var(--shadow);
     transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
   }
   .modulo-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+  .modulo-thumb{
+    position:relative;border-radius:10px;overflow:hidden;margin-bottom:14px;
+    aspect-ratio:3/4;box-shadow:0 4px 14px rgba(43,34,51,.14);
+  }
+  .modulo-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .4s ease}
+  .modulo-card:hover .modulo-thumb img{transform:scale(1.06)}
   .modulo-card .n{
-    width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-weight:700;
-    margin:0 auto 12px;transition:transform .3s ease;
+    width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;
+    position:absolute;top:8px;left:8px;box-shadow:0 3px 8px rgba(43,34,51,.3);
+    transition:transform .3s ease;
   }
   .modulo-card:hover .n{transform:scale(1.12) rotate(8deg)}
   .modulo-card.pending{opacity:.6;border-style:dashed}
@@ -504,11 +511,26 @@ function trackBoth(event, params){
   <div class="wrap">
     <h2 style="text-align:center;margin-bottom:1em">Los módulos</h2>
     <div class="modulos-grid">
-      <div class="modulo-card reveal"><div class="n">1</div><h3>Sembrando</h3><p style="font-size:.9rem;color:var(--muted)">La técnica del Stamp Crochet</p></div>
-      <div class="modulo-card reveal"><div class="n">2</div><h3>Brotando</h3><p style="font-size:.9rem;color:var(--muted)">Empieza la magia del Stamp Crochet</p></div>
-      <div class="modulo-card reveal"><div class="n">3</div><h3>Creciendo</h3><p style="font-size:.9rem;color:var(--muted)">Explosión de color en Stamp Crochet</p></div>
-      <div class="modulo-card reveal"><div class="n">4</div><h3>Floreciendo</h3><p style="font-size:.9rem;color:var(--muted)">Texturas en Stamp Crochet</p></div>
-      <div class="modulo-card reveal"><div class="n">5</div><h3>Manzanas</h3><p style="font-size:.9rem;color:var(--muted)">Tejido abierto, circular y en espiral</p></div>
+      <div class="modulo-card reveal">
+        <div class="modulo-thumb"><div class="n">1</div><img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_400/v1789505824/modulo-1-sembrando.png" alt="Contenido del Módulo 1: Sembrando, la técnica del Stamp Crochet" loading="lazy"></div>
+        <h3>Sembrando</h3><p style="font-size:.9rem;color:var(--muted)">La técnica del Stamp Crochet</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-thumb"><div class="n">2</div><img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_400/v1789505826/modulo-2-brotando.png" alt="Contenido del Módulo 2: Brotando, empieza la magia del Stamp Crochet" loading="lazy"></div>
+        <h3>Brotando</h3><p style="font-size:.9rem;color:var(--muted)">Empieza la magia del Stamp Crochet</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-thumb"><div class="n">3</div><img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_400/v1789505827/modulo-3-creciendo.png" alt="Contenido del Módulo 3: Creciendo, explosión de color en Stamp Crochet" loading="lazy"></div>
+        <h3>Creciendo</h3><p style="font-size:.9rem;color:var(--muted)">Explosión de color en Stamp Crochet</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-thumb"><div class="n">4</div><img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_400/v1789505829/modulo-4-floreciendo.png" alt="Contenido del Módulo 4: Floreciendo, texturas en Stamp Crochet" loading="lazy"></div>
+        <h3>Floreciendo</h3><p style="font-size:.9rem;color:var(--muted)">Texturas en Stamp Crochet</p>
+      </div>
+      <div class="modulo-card reveal">
+        <div class="modulo-thumb"><div class="n">5</div><img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_400/v1789505830/modulo-5-manzanas.png" alt="Contenido del Módulo 5: Manzanas, tejido abierto, circular y en espiral" loading="lazy"></div>
+        <h3>Manzanas</h3><p style="font-size:.9rem;color:var(--muted)">Tejido abierto, circular y en espiral</p>
+      </div>
     </div>
     <div class="btn-wrap" style="margin-top:32px"><a class="btn" href="#precio">¡Quiero acceder a todo el contenido!</a></div>
   </div>
