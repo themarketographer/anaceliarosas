@@ -25,22 +25,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- ===== META PIXEL — Píxel de Ana Celia Rosas (923008885776318), confirmado en el portafolio comercial el 15-sept-2026 ===== -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '923008885776318');
-fbq('track', 'PageView');
-function trackBoth(event, params){
-  fbq('track', event, params || {});
-}
-</script>
-<noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=923008885776318&ev=PageView&noscript=1" /></noscript>
-<!-- ===== FIN META PIXEL ===== -->
+<!-- Meta Pixel + API de Conversiones (ver track.js y netlify/functions/capi.js) -->
+<script src="track.js"></script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=923008885776318&ev=PageView&noscript=1"></noscript>
 
 <!-- JSON-LD: Curso + Persona -->
 <script type="application/ld+json">
@@ -379,9 +366,110 @@ function trackBoth(event, params){
     *{transition:none !important; scroll-behavior:auto !important; animation:none !important}
     .reveal{opacity:1 !important;transform:none !important}
   }
+
+  /* ===== mejoras visuales ===== */
+  :root{
+    --blush:#f7e6ee;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --shadow:0 1px 2px rgba(43,34,51,.06), 0 14px 32px -12px rgba(43,34,51,.16);
+    --shadow-lg:0 2px 4px rgba(43,34,51,.06), 0 28px 48px -16px rgba(43,34,51,.26);
+  }
+  ::selection{background:var(--accent);color:#fff}
+  html{scrollbar-color:var(--accent) var(--bg-alt)}
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--bg-alt)}
+  ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;border:3px solid var(--bg-alt)}
+  :focus-visible{outline:3px solid var(--accent-2);outline-offset:3px;border-radius:6px}
+  a{text-underline-offset:.2em}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty}
+  h1{letter-spacing:-.02em}
+  .skip{position:absolute;left:-999px;top:8px;background:var(--accent-ink);color:#fff;padding:10px 16px;border-radius:8px;z-index:100}
+  .skip:focus{left:8px}
+  .ico{width:1.15em;height:1.15em;flex:none;vertical-align:-.2em}
+  .ico-lg{width:44px;height:44px;color:var(--accent);flex:none}
+  .autoridad-track span .ico{color:var(--warm)}
+  .credenciales .ico{color:var(--accent)}
+  .btn-micro .ico{width:1em;height:1em;vertical-align:-.15em}
+
+  /* hero con calidez de lana */
+  .hero{
+    background:
+      radial-gradient(60% 70% at 88% 10%, var(--blush) 0, transparent 70%),
+      radial-gradient(45% 60% at 0% 100%, #fdeedd 0, transparent 70%);
+    padding-top:48px;padding-bottom:88px;
+  }
+  .hero h1{font-size:clamp(2.4rem,5.6vw,4.2rem);line-height:1.04;max-width:12ch}
+  .hero p.lead{font-size:1.15rem;max-width:34em}
+  .hero-proof{margin-top:18px;display:flex;align-items:center;gap:.5em;font-size:.88rem;font-weight:600;color:var(--accent-ink)}
+  .hero-proof .ico{color:var(--accent-2)}
+  .hero video{max-height:min(66vh,540px);transform:rotate(1.2deg)}
+  .hero video:hover{transform:rotate(0) scale(1.01)}
+
+  /* botones */
+  .btn{transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .2s ease}
+  .btn:hover{background:#7a3480}
+  .precio-card .btn:hover{background:#fff7ea}
+
+  /* por qué: filas editoriales con puntada */
+  .porque{padding:32px 0 8px}
+  .porque-row{
+    display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.3fr);gap:8px 32px;align-items:start;
+    padding:30px 0;border-bottom:2px dashed #d9c6dc;
+  }
+  .porque-row:last-child{border-bottom:0}
+  .porque-row h3{margin:0;font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--accent-ink)}
+  .porque-row p{margin:.3em 0 0;color:var(--muted);font-size:1.05rem}
+  @media (max-width:720px){
+    .porque-row{grid-template-columns:44px 1fr;padding:24px 0}
+    .porque-row p{grid-column:1 / -1}
+  }
+
+  /* títulos de sección con puntada */
+  section h2[style*="text-align:center"]::after{
+    content:"";display:block;width:84px;height:0;margin:.5em auto 0;border-top:3px dotted var(--warm);
+  }
+
+  /* stats más calmas */
+  .stats{background:var(--warm);}
+  .stats .num{font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+  /* tarjetas y módulos */
+  .card{background:#fff;border:1px solid var(--line)}
+  .modulo-card{border-radius:18px}
+  .modulo-card:hover{transform:translateY(-6px)}
+  .galeria-grid figure{border-radius:18px}
+  .galeria-grid figure:nth-child(even){transform:translateY(14px)}
+  @media (max-width:920px){ .galeria-grid figure:nth-child(even){transform:none} }
+  .galeria-grid figcaption{opacity:1;transform:none;font-size:.78rem;font-weight:600}
+
+  /* precio */
+  .precio-card{
+    background:linear-gradient(160deg,#9a479f 0%,var(--accent-ink) 100%);
+    box-shadow:0 2px 4px rgba(43,34,51,.08), 0 40px 64px -24px rgba(94,42,99,.55);
+  }
+  .precio-card .price{font-size:3.6rem;letter-spacing:-.03em}
+
+  /* barra móvil: respeta el notch */
+  .mobile-cta{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
+  @media (max-width:768px){ body{padding-bottom:78px} }
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="m8.6 13.6-1.4 7.4 4.8-2.6 4.8 2.6-1.4-7.4"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="13" height="13" rx="3"/><path d="m16 10.5 5-3v9l-5-3"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+    <symbol id="i-infinity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-3-3.5-4-5.5-4a4 4 0 1 0 0 8c2 0 3.500-1 5.500-4Zm0 0c2 3 3.500 4 5.500 4a4 4 0 1 0 0-8c-2 0-3.500 1-5.500 4Z"/></symbol>
+    <symbol id="i-yarn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M4.500 7.500c4 1.500 9 1.500 13 0M3.300 12c4.500 2 10 2 14.500 0M5 16.500c3.500 1.300 7.500 1.300 11 0M15 19.500l5 1.500M18 14.500l3 4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.500"/><path d="M2.500 20c.5-3.500 3-5.500 6.500-5.500s6 2 6.500 5.500M16 4.800a3.500 3.500 0 0 1 0 6.400M18 14.800c2 .7 3.200 2.400 3.500 5.200"/></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8c-1.500-1.500-5-2-6.500.5-2 3-.5 9 2 11 1.500 1.200 2.800.7 4.500.7s3 .5 4.500-.7c2.500-2 4-8 2-11C17 6 13.500 6.500 12 8Z"/><path d="M12 8c0-2 1-3.500 3-4.500"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.500" y="10.500" width="15" height="10" rx="2.500"/><path d="M8 10.500V8a4 4 0 0 1 8 0v2.500"/></symbol>
+  </defs>
+</svg>
+<a class="skip" href="#precio">Ir al precio</a>
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
@@ -394,13 +482,13 @@ function trackBoth(event, params){
 <section class="hero" id="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="kicker">🧶 Aprendiendo con manzanitas</div>
       <h1>Mega Curso Stamp Crochet</h1>
       <p class="lead">Un método revolucionario para dominar el crochet, creado y diseñado por <strong>Ana Celia Rosas</strong>, experta del equipo Tejiendo Perú.</p>
       <p class="lead">15+ horas de entrenamiento en más de 50 videos, tareas y bonos exclusivos para innovar en tu tejido.</p>
       <div class="btn-wrap" style="text-align:left">
         <a class="btn pulse" href="#precio" data-cta="hero">¡Quiero aprender ahora!</a>
         <div class="btn-micro" style="text-align:left">Acceso inmediato · pago único · sin suscripción</div>
+        <div class="hero-proof"><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg> Miles de tejedoras ya aprenden con el método</div>
       </div>
     </div>
     <div class="hero-video-wrap reveal">
@@ -419,17 +507,17 @@ function trackBoth(event, params){
 <!-- FRANJA DE AUTORIDAD -->
 <section class="autoridad" aria-label="Reconocimiento y alcance del método">
   <div class="autoridad-track">
-    <span>🏆 Fundadora de Tejiendo Perú</span>
-    <span>🎥 150+ horas de producción</span>
-    <span>🌎 Ya se enseña en Perú · Argentina · España · Colombia · Chile · México · EE.UU.</span>
-    <span>♾️ Acceso de por vida</span>
-    <span>🧶 Técnica creada y registrada por Ana Celia Rosas</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg> Fundadora de Tejiendo Perú</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg> 150+ horas de producción</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg> Ya se enseña en Perú · Argentina · España · Colombia · Chile · México · EE.UU.</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-infinity"/></svg> Acceso de por vida</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-yarn"/></svg> Técnica creada y registrada por Ana Celia Rosas</span>
     <!-- se repite para el loop continuo -->
-    <span>🏆 Fundadora de Tejiendo Perú</span>
-    <span>🎥 150+ horas de producción</span>
-    <span>🌎 Ya se enseña en Perú · Argentina · España · Colombia · Chile · México · EE.UU.</span>
-    <span>♾️ Acceso de por vida</span>
-    <span>🧶 Técnica creada y registrada por Ana Celia Rosas</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg> Fundadora de Tejiendo Perú</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg> 150+ horas de producción</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg> Ya se enseña en Perú · Argentina · España · Colombia · Chile · México · EE.UU.</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-infinity"/></svg> Acceso de por vida</span>
+    <span><svg class="ico" aria-hidden="true"><use href="#i-yarn"/></svg> Técnica creada y registrada por Ana Celia Rosas</span>
   </div>
 </section>
 
@@ -444,24 +532,22 @@ function trackBoth(event, params){
 </section>
 
 <!-- PILARES -->
-<section>
+<section class="porque">
   <div class="wrap">
-    <div class="pillars">
-      <div class="card reveal">
-        <span class="emoji">👩‍🏫</span>
-        <h3>Experiencia comprobada</h3>
-        <p>Creado por una experta del reconocido equipo Tejiendo Perú, con años de experiencia enseñando crochet en línea.</p>
-      </div>
-      <div class="card reveal">
-        <span class="emoji">🧶</span>
-        <h3>Método innovador</h3>
-        <p>La metodología Stamp Crochet, desarrollada por Ana Celia Rosas, te permite avanzar rápido en tus proyectos de tejido.</p>
-      </div>
-      <div class="card reveal">
-        <span class="emoji">🍎</span>
-        <h3>Aprendizaje práctico</h3>
-        <p>Con el concepto de "manzanitas" aprenderás de forma visual y práctica, entendiendo patrones complejos sin complicarte.</p>
-      </div>
+    <div class="porque-row reveal">
+      <svg class="ico-lg" aria-hidden="true"><use href="#i-award"/></svg>
+      <h3>Experiencia comprobada</h3>
+      <p>Creado por una experta del reconocido equipo Tejiendo Perú, con años de experiencia enseñando crochet en línea.</p>
+    </div>
+    <div class="porque-row reveal">
+      <svg class="ico-lg" aria-hidden="true"><use href="#i-yarn"/></svg>
+      <h3>Método innovador</h3>
+      <p>La metodología Stamp Crochet, desarrollada por Ana Celia Rosas, te permite avanzar rápido en tus proyectos de tejido.</p>
+    </div>
+    <div class="porque-row reveal">
+      <svg class="ico-lg" aria-hidden="true"><use href="#i-apple"/></svg>
+      <h3>Aprendizaje práctico</h3>
+      <p>Con el concepto de "manzanitas" aprenderás de forma visual y práctica, entendiendo patrones complejos sin complicarte.</p>
     </div>
   </div>
 </section>
@@ -597,9 +683,9 @@ function trackBoth(event, params){
       <h2>Conoce a tu instructora</h2>
       <h3 style="color:var(--accent-ink)">Ana Celia Rosas</h3>
       <div class="credenciales">
-        <span>🏆 Fundadora de Tejiendo Perú</span>
-        <span>🧶 Creadora del método Stamp Crochet</span>
-        <span>👩‍🎓 Miles de estudiantes formadas</span>
+        <span><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg> Fundadora de Tejiendo Perú</span>
+        <span><svg class="ico" aria-hidden="true"><use href="#i-yarn"/></svg> Creadora del método Stamp Crochet</span>
+        <span><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg> Miles de estudiantes formadas</span>
       </div>
       <p>Ana Celia es una reconocida experta en crochet y parte del equipo de Tejiendo Perú, una de las escuelas de tejido a crochet líderes en internet. Con años de experiencia enseñando a miles de estudiantes, desarrolló la metodología Stamp Crochet, que revolucionó la forma de aprender y enseñar crochet en Latinoamérica.</p>
       <p>Su enfoque innovador y su pasión por el tejido la han convertido en una referente de la comunidad de crochet.</p>
@@ -661,7 +747,7 @@ function trackBoth(event, params){
       </ul>
       <div class="price">$297<small>USD · pago único</small></div>
       <a class="btn" href="https://nas.com/es-mx/checkout-global?communityId=68bb872e9844e727939c7682&amp;communityCode=ANA_CELIA_ROSAS_1&amp;requestor=signupRequestor&amp;linkClicked=https%3A%2F%2Fnas.com%2Fes-mx%2Fanaceliarosas&amp;sourceInfoType=folder&amp;sourceInfoOrigin=68bc3cf911c41b9bb6e3b32c" data-cta="checkout-nas" id="cta-checkout" target="_blank" rel="noopener">Quiero mi acceso ahora</a>
-      <div class="btn-micro" style="color:#f0dff2">Pago 100% seguro · acceso inmediato tras la compra</div>
+      <div class="btn-micro" style="color:#f0dff2"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg> Pago 100% seguro · acceso inmediato tras la compra</div>
     </div>
   </div>
 </section>
@@ -702,7 +788,7 @@ function trackBoth(event, params){
   <div class="wrap">
     <div>
       <img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_240/v1789249707/logo.png" alt="Ana Celia Rosas" style="height:44px;filter:brightness(0) invert(1)">
-      <p style="margin-top:12px;max-width:280px">Aprendiendo con manzanitas 🍎<br>Creado y diseñado por Ana Celia Rosas</p>
+      <p style="margin-top:12px;max-width:280px">Aprendiendo con manzanitas<br>Creado y diseñado por Ana Celia Rosas</p>
       <small>© <span id="year"></span> Ana Celia Rosas. Todos los derechos reservados.</small>
     </div>
     <div class="cols">
@@ -815,19 +901,6 @@ function trackBoth(event, params){
   new IntersectionObserver(function(entries){
     entries.forEach(function(e){ nearPrecio = e.isIntersecting; syncBar(); });
   }, {threshold:.1}).observe(precio);
-
-  // tracking de intención
-  document.querySelectorAll('[data-cta]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      if (typeof trackBoth === 'function') {
-        if (btn.dataset.cta === 'checkout-nas') {
-          trackBoth('InitiateCheckout', {content_name:'Mega Curso Stamp Crochet', value:297, currency:'USD'});
-        } else {
-          trackBoth('ViewContent', {content_name:'Mega Curso Stamp Crochet'});
-        }
-      }
-    });
-  });
 
   // sonido del video del hero — los navegadores bloquean el autoplay con sonido,
   // así que arranca muted y este botón lo activa con la primera interacción real del usuario

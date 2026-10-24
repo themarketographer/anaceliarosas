@@ -1,0 +1,21 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/capi"
+  to = "/.netlify/functions/capi"
+  status = 200
+
+# El repo publica la raíz completa: se bloquea lo que no debe ser público.
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/CAMPANA-META.md"
+  to = "/404.html"
+  status = 404
+  force = true
