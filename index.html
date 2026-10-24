@@ -494,6 +494,32 @@
     .wa-float span{display:none}
   }
   footer .wrap{align-items:flex-start}
+
+  /* ===== ronda 3: hero con beneficio, ritmo y galería ===== */
+  .hero h1{max-width:15ch;font-size:clamp(2.2rem,5vw,3.7rem)}
+  .hero-sub{font-family:'Fraunces',serif;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--accent);line-height:1.35;margin:0 0 1em}
+  .hero-facts{list-style:none;padding:0;margin:20px 0 26px;display:grid;grid-template-columns:repeat(3,auto);gap:10px 28px;justify-content:start}
+  .hero-facts li{font-size:.85rem;color:var(--muted);line-height:1.25;border-left:2px dotted var(--accent-2);padding-left:12px}
+  .hero-facts strong{display:block;font-family:'Fraunces',serif;font-size:1.35rem;color:var(--accent-ink)}
+  @media (max-width:520px){ .hero-facts{grid-template-columns:repeat(3,1fr);gap:8px 14px} .hero-facts li{font-size:.76rem;padding-left:9px} }
+
+  .modulos-nota{text-align:center;max-width:640px;margin:28px auto 0;color:var(--muted)}
+  /* módulos: carrusel táctil en móvil */
+  @media (max-width:920px){
+    .modulos-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -24px;padding:6px 24px 18px;scrollbar-width:none}
+    .modulos-grid::-webkit-scrollbar{display:none}
+    .modulo-card{flex:0 0 72%;max-width:280px;scroll-snap-align:center}
+  }
+
+  /* galería a sangre completa */
+  .galeria-grid{
+    display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin:0 calc(50% - 50vw);padding:8px max(24px, calc(50vw - 560px)) 22px;scrollbar-width:none;
+  }
+  .galeria-grid::-webkit-scrollbar{display:none}
+  .galeria-grid figure{flex:0 0 min(300px,72vw);aspect-ratio:4/5;scroll-snap-align:center;transform:none !important}
+  .galeria-grid figure img{height:100%;aspect-ratio:auto;width:100%;object-fit:cover}
+  .instructora img{object-position:center 20%}
 </style>
 </head>
 <body>
@@ -523,9 +549,14 @@
 <section class="hero" id="hero">
   <div class="wrap hero-grid">
     <div>
-      <h1>Mega Curso Stamp Crochet</h1>
-      <p class="lead">Un método revolucionario para dominar el crochet, creado y diseñado por <strong>Ana Celia Rosas</strong>, experta del equipo Tejiendo Perú.</p>
-      <p class="lead">15+ horas de entrenamiento en más de 50 videos, tareas y bonos exclusivos para innovar en tu tejido.</p>
+      <h1>Teje piezas en relieve que nadie más sabe hacer</h1>
+      <p class="hero-sub">Mega Curso Stamp Crochet · el método de las manzanitas, creado por <strong>Ana Celia Rosas</strong>, del equipo Tejiendo Perú.</p>
+      <p class="lead">Dos capas de tejido que se entrelazan para “estampar” diseños en relieve sobre un tejido plano, paso a paso y con una técnica que no encontrarás en YouTube ni en redes.</p>
+      <ul class="hero-facts" aria-label="Qué incluye el curso">
+        <li><strong>15+</strong> horas de entrenamiento</li>
+        <li><strong>50+</strong> videos en 5 módulos</li>
+        <li><strong>Para siempre</strong> acceso de por vida</li>
+      </ul>
       <div class="btn-wrap" style="text-align:left">
         <a class="btn pulse" href="#precio" data-cta="hero">¡Quiero aprender ahora!</a>
         <div class="btn-micro" style="text-align:left">Acceso inmediato · pago único · sin suscripción</div>
@@ -559,16 +590,6 @@
     <span aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg> Ya se enseña en Perú · Argentina · España · Colombia · Chile · México · EE.UU.</span>
     <span aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-infinity"/></svg> Acceso de por vida</span>
     <span aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-yarn"/></svg> Técnica creada y registrada por Ana Celia Rosas</span>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-  <div class="wrap">
-    <div><div class="num" data-count="15" data-suffix="+">0</div><div class="label">Horas de entrenamiento</div></div>
-    <div><div class="num" data-count="50" data-suffix="+">0</div><div class="label">Videos de aprendizaje</div></div>
-    <div><div class="num" data-count="100" data-suffix="%">0</div><div class="label">Práctico y aplicable</div></div>
-    <div><div class="num" data-static="∞">∞</div><div class="label">Posibilidades creativas</div></div>
   </div>
 </section>
 
@@ -606,37 +627,10 @@
   </div>
 </section>
 
-<!-- CONTENIDO -->
-<section>
-  <div class="wrap">
-    <h2 style="text-align:center;margin-bottom:1em">Contenido del curso</h2>
-    <div class="contenido">
-      <div class="card reveal">
-        <h3>Entrenamiento completo</h3>
-        <ul class="check">
-          <li>15+ horas de entrenamiento intensivo en la metodología Stamp Crochet</li>
-          <li>50+ videos detallados, organizados en 5 módulos</li>
-          <li>Acceso inmediato a todo el material para avanzar a tu ritmo</li>
-          <li>Contenido estructurado de forma progresiva para un aprendizaje óptimo</li>
-        </ul>
-      </div>
-      <div class="card reveal">
-        <h3>Tareas y bonos exclusivos</h3>
-        <ul class="check">
-          <li>Tareas prácticas para reforzar lo aprendido en cada módulo</li>
-          <li>Proyectos guiados para crear e innovar en tu tejido</li>
-          <li>Bonos exclusivos con patrones y técnicas que no encontrarás en YouTube ni redes</li>
-          <li>Recursos descargables para complementar tu aprendizaje</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- MODULOS -->
 <section style="background:var(--bg-alt)">
   <div class="wrap">
-    <h2 style="text-align:center;margin-bottom:1em">Los módulos</h2>
+    <h2 style="text-align:center;margin-bottom:1em" id="modulos">Los 5 módulos del curso</h2>
     <div class="modulos-grid">
       <div class="modulo-card reveal">
         <div class="modulo-thumb"><div class="n">1</div><img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_400/v1789505824/modulo-1-sembrando.png" alt="Contenido del Módulo 1: Sembrando, la técnica del Stamp Crochet" loading="lazy"></div>
@@ -659,7 +653,8 @@
         <h3>Manzanas</h3><p style="font-size:.9rem;color:var(--muted)">Tejido abierto, circular y en espiral</p>
       </div>
     </div>
-    <div class="btn-wrap" style="margin-top:32px"><a class="btn" href="#precio">¡Quiero acceder a todo el contenido!</a></div>
+    <p class="modulos-nota">Cada módulo trae tareas prácticas, proyectos guiados y recursos descargables. Además, bonos exclusivos con patrones y técnicas que no encontrarás en otro lugar.</p>
+    <div class="btn-wrap" style="margin-top:24px"><a class="btn" href="#precio" data-cta="modulos">Ver el precio y lo que incluye</a></div>
   </div>
 </section>
 
@@ -669,27 +664,27 @@
     <h2 style="text-align:center;margin-bottom:1em">Algunos modelos</h2>
     <div class="galeria-grid">
       <figure class="reveal">
-        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249712/galeria-1-collage.jpg" alt="Colección de bolsos y monederos Stamp Crochet">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_600,h_750/v1789249712/galeria-1-collage.jpg" alt="Colección de bolsos y monederos Stamp Crochet">
         <figcaption>Colección de bolsos y monederos</figcaption>
       </figure>
       <figure class="reveal">
-        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249713/galeria-2-bolso-manzanas.jpg" alt="Bolso de manzanitas en Stamp Crochet">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_600,h_750/v1789249713/galeria-2-bolso-manzanas.jpg" alt="Bolso de manzanitas en Stamp Crochet">
         <figcaption>Bolso de manzanitas</figcaption>
       </figure>
       <figure class="reveal">
-        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249715/galeria-3-libelula.jpg" alt="Monedero con libélula en Stamp Crochet">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_600,h_750/v1789249715/galeria-3-libelula.jpg" alt="Monedero con libélula en Stamp Crochet">
         <figcaption>Monedero con libélula</figcaption>
       </figure>
       <figure class="reveal">
-        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/video/upload/c_fill,g_auto,w_500,h_500,so_35,f_jpg,q_auto/v1789249734/gatitos-detalle.jpg" alt="Cuadros de gatitos en Stamp Crochet">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/video/upload/c_fill,g_auto,w_600,h_750,so_35,f_jpg,q_auto/v1789249734/gatitos-detalle.jpg" alt="Cuadros de gatitos en Stamp Crochet">
         <figcaption>Cuadros de gatitos</figcaption>
       </figure>
       <figure class="reveal">
-        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249716/galeria-5-proceso.jpg" alt="Tejiendo un diseño Stamp Crochet a mano">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_600,h_750/v1789249716/galeria-5-proceso.jpg" alt="Tejiendo un diseño Stamp Crochet a mano">
         <figcaption>El proceso, a mano</figcaption>
       </figure>
     </div>
-    <div class="btn-wrap" style="margin-top:16px"><a class="btn" href="#precio">¡Quiero aprender ahora!</a></div>
+    <div class="btn-wrap" style="margin-top:28px"><a class="btn" href="#precio" data-cta="galeria">Quiero tejer así</a></div>
   </div>
 </section>
 
@@ -718,29 +713,6 @@
   </div>
 </section>
 
-<!-- LOGROS -->
-<section>
-  <div class="wrap">
-    <div class="logros">
-      <h2 style="text-align:center">Lo que lograrás</h2>
-      <div class="logros-grid">
-        <ul class="check">
-          <li>Aprenderás una técnica única, directamente de su creadora</li>
-          <li>Tejerás piezas que nadie más sabrá cómo hacer</li>
-          <li>Técnicas avanzadas de lectura de patrones</li>
-          <li>Técnicas para innovar en tus propias creaciones</li>
-        </ul>
-        <ul class="check">
-          <li>Proyectos completos, paso a paso</li>
-          <li>Un espacio solo para ti, tu calma y tu arte</li>
-          <li>Acceso de por vida, para aprender a tu ritmo</li>
-          <li>Elevarás tu creatividad y tu habilidad manual a otro nivel</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- INSTRUCTORA -->
 <section style="background:var(--bg-alt)">
   <div class="wrap instructora">
@@ -755,7 +727,7 @@
       </div>
       <p>Ana Celia es una reconocida experta en crochet y parte del equipo de Tejiendo Perú, una de las escuelas de tejido a crochet líderes en internet. Con años de experiencia enseñando a miles de estudiantes, desarrolló la metodología Stamp Crochet, que revolucionó la forma de aprender y enseñar crochet en Latinoamérica.</p>
       <p>Su enfoque innovador y su pasión por el tejido la han convertido en una referente de la comunidad de crochet.</p>
-      <div class="btn-wrap" style="text-align:left"><a class="btn" href="#precio">¡Quiero aprender ahora!</a></div>
+      <div class="btn-wrap" style="text-align:left"><a class="btn" href="#precio" data-cta="instructora">Aprender con Ana Celia</a></div>
     </div>
   </div>
 </section>
@@ -792,7 +764,7 @@
         </div>
       </div>
     </div>
-    <div class="btn-wrap" style="margin-top:28px"><a class="btn" href="#precio">¡Quiero comprarlo ahora!</a></div>
+    <div class="btn-wrap" style="margin-top:28px"><a class="btn" href="#precio" data-cta="testimonios">Unirme a las alumnas</a></div>
   </div>
 </section>
 
@@ -811,9 +783,9 @@
         <li>Acceso de por vida a todos los materiales</li>
         <li>Comunidad de apoyo de tejedoras</li>
       </ul>
-      <div class="price">$297<small>USD · pago único</small></div>
+      <div class="price">$297<small>USD · pago único · menos de $60 por módulo</small></div>
       <a class="btn" href="https://nas.com/es-mx/checkout-global?communityId=68bb872e9844e727939c7682&amp;communityCode=ANA_CELIA_ROSAS_1&amp;requestor=signupRequestor&amp;linkClicked=https%3A%2F%2Fnas.com%2Fes-mx%2Fanaceliarosas&amp;sourceInfoType=folder&amp;sourceInfoOrigin=68bc3cf911c41b9bb6e3b32c" data-cta="checkout-nas" id="cta-checkout" target="_blank" rel="noopener">Quiero mi acceso ahora</a>
-      <div class="btn-micro" style="color:#f0dff2"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg> Pago 100% seguro · acceso inmediato tras la compra</div>
+      <div class="btn-micro" style="color:#f0dff2">Te llevamos a nuestro checkout seguro en nas.com (se abre en otra pestaña).<br><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg> Pago 100% seguro · acceso inmediato tras la compra</div>
     </div>
   </div>
 </section>
@@ -846,7 +818,7 @@
       <button class="faq-q" aria-expanded="false">¿Qué materiales necesito?<span class="icon">+</span></button>
       <div class="faq-a"><p>La lista de materiales está en los PDFs de cada módulo: opciones accesibles y fáciles de encontrar.</p></div>
     </div>
-    <div class="btn-wrap" style="margin-top:32px"><a class="btn" href="#precio">¡Quiero aprender ahora!</a></div>
+    <div class="btn-wrap" style="margin-top:32px"><a class="btn" href="#precio" data-cta="faq">Ya resolví mis dudas: quiero mi acceso</a></div>
   </div>
 </section>
 
