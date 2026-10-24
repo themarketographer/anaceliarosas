@@ -21,6 +21,9 @@
 <meta name="twitter:image" content="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_1200/v1789249709/hero-collage.jpg">
 
 <link rel="icon" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<meta name="theme-color" content="#5e2a63">
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,6 +53,7 @@
     "@type": "Offer",
     "price": "297.00",
     "priceCurrency": "USD",
+    "url": "https://anaceliarosas.com/",
     "availability": "https://schema.org/InStock"
   }
 }
@@ -453,6 +457,43 @@
   /* barra móvil: respeta el notch */
   .mobile-cta{padding-bottom:calc(12px + env(safe-area-inset-bottom))}
   @media (max-width:768px){ body{padding-bottom:78px} }
+
+  /* ===== ronda 2: pulido ===== */
+  .testi-grid{align-items:stretch}
+  .testi-grid .testi:first-child{
+    display:flex;flex-direction:column;justify-content:center;
+    background:linear-gradient(170deg,#fff 0%,var(--blush) 100%);
+  }
+  .testi-grid .testi:first-child::before{
+    content:"\201C";font-family:'Fraunces',serif;font-size:5rem;line-height:.6;color:var(--accent);opacity:.35;display:block;margin-bottom:.15em;
+  }
+  .testi-grid .testi:first-child p{font-style:normal;font-family:'Fraunces',serif;font-size:1.12rem;line-height:1.5}
+  .testi-grid .testi video{aspect-ratio:3/2;object-fit:cover;background:#2b2233}
+
+  .paraquien{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:stretch}
+  @media (max-width:820px){ .paraquien{grid-template-columns:1fr} }
+  .pq{border-radius:var(--radius);padding:30px}
+  .pq h3{margin-bottom:.8em}
+  .pq-si{background:#fff;border:2px solid var(--accent-2);box-shadow:var(--shadow)}
+  .pq-no{background:var(--bg-alt);border:2px dashed #d9c6dc}
+  ul.x{list-style:none;padding:0;margin:0}
+  ul.x li{padding-left:1.6em;position:relative;margin-bottom:.7em}
+  ul.x li::before{content:"×";position:absolute;left:0;color:var(--accent);font-weight:700;font-size:1.2em;line-height:1.1}
+  .pq-note{color:var(--muted);font-size:.95rem;margin:1em 0 0}
+
+  /* whatsapp */
+  .wa-float{
+    position:fixed;right:18px;bottom:18px;z-index:65;display:inline-flex;align-items:center;gap:.6em;
+    background:#1f9d55;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;
+    padding:13px 18px;border-radius:999px;box-shadow:0 2px 4px rgba(0,0,0,.12), 0 14px 28px -10px rgba(31,157,85,.6);
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .wa-float:hover{transform:translateY(-3px)}
+  @media (max-width:768px){
+    .wa-float{bottom:calc(86px + env(safe-area-inset-bottom));right:14px;padding:13px}
+    .wa-float span{display:none}
+  }
+  footer .wrap{align-items:flex-start}
 </style>
 </head>
 <body>
@@ -513,11 +554,11 @@
     <span><svg class="ico" aria-hidden="true"><use href="#i-infinity"/></svg> Acceso de por vida</span>
     <span><svg class="ico" aria-hidden="true"><use href="#i-yarn"/></svg> Técnica creada y registrada por Ana Celia Rosas</span>
     <!-- se repite para el loop continuo -->
-    <span><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg> Fundadora de Tejiendo Perú</span>
-    <span><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg> 150+ horas de producción</span>
-    <span><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg> Ya se enseña en Perú · Argentina · España · Colombia · Chile · México · EE.UU.</span>
-    <span><svg class="ico" aria-hidden="true"><use href="#i-infinity"/></svg> Acceso de por vida</span>
-    <span><svg class="ico" aria-hidden="true"><use href="#i-yarn"/></svg> Técnica creada y registrada por Ana Celia Rosas</span>
+    <span aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-award"/></svg> Fundadora de Tejiendo Perú</span>
+    <span aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg> 150+ horas de producción</span>
+    <span aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg> Ya se enseña en Perú · Argentina · España · Colombia · Chile · México · EE.UU.</span>
+    <span aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-infinity"/></svg> Acceso de por vida</span>
+    <span aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-yarn"/></svg> Técnica creada y registrada por Ana Celia Rosas</span>
   </div>
 </section>
 
@@ -555,7 +596,7 @@
 <!-- QUE ES -->
 <section style="background:var(--bg-alt)">
   <div class="wrap metodo">
-    <img class="reveal" style="border-radius:var(--radius);box-shadow:var(--shadow)" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_800/v1789249716/galeria-5-proceso.jpg" alt="Detalle del tejido Stamp Crochet en proceso">
+    <img loading="lazy" decoding="async" class="reveal" style="border-radius:var(--radius);box-shadow:var(--shadow)" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,w_800/v1789249716/galeria-5-proceso.jpg" alt="Detalle del tejido Stamp Crochet en proceso">
     <div>
       <h2>¿Qué es el Mega Curso Stamp Crochet?</h2>
       <p>Un método revolucionario para dominar el crochet, creado y diseñado por Ana Celia Rosas, experta del equipo Tejiendo Perú.</p>
@@ -628,27 +669,52 @@
     <h2 style="text-align:center;margin-bottom:1em">Algunos modelos</h2>
     <div class="galeria-grid">
       <figure class="reveal">
-        <img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249712/galeria-1-collage.jpg" alt="Colección de bolsos y monederos Stamp Crochet">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249712/galeria-1-collage.jpg" alt="Colección de bolsos y monederos Stamp Crochet">
         <figcaption>Colección de bolsos y monederos</figcaption>
       </figure>
       <figure class="reveal">
-        <img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249713/galeria-2-bolso-manzanas.jpg" alt="Bolso de manzanitas en Stamp Crochet">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249713/galeria-2-bolso-manzanas.jpg" alt="Bolso de manzanitas en Stamp Crochet">
         <figcaption>Bolso de manzanitas</figcaption>
       </figure>
       <figure class="reveal">
-        <img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249715/galeria-3-libelula.jpg" alt="Monedero con libélula en Stamp Crochet">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249715/galeria-3-libelula.jpg" alt="Monedero con libélula en Stamp Crochet">
         <figcaption>Monedero con libélula</figcaption>
       </figure>
       <figure class="reveal">
-        <img src="https://res.cloudinary.com/dplhu2z6j/video/upload/c_fill,g_auto,w_500,h_500,so_35,f_jpg,q_auto/v1789249734/gatitos-detalle.jpg" alt="Cuadros de gatitos en Stamp Crochet">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/video/upload/c_fill,g_auto,w_500,h_500,so_35,f_jpg,q_auto/v1789249734/gatitos-detalle.jpg" alt="Cuadros de gatitos en Stamp Crochet">
         <figcaption>Cuadros de gatitos</figcaption>
       </figure>
       <figure class="reveal">
-        <img src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249716/galeria-5-proceso.jpg" alt="Tejiendo un diseño Stamp Crochet a mano">
+        <img loading="lazy" decoding="async" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_500,h_500/v1789249716/galeria-5-proceso.jpg" alt="Tejiendo un diseño Stamp Crochet a mano">
         <figcaption>El proceso, a mano</figcaption>
       </figure>
     </div>
     <div class="btn-wrap" style="margin-top:16px"><a class="btn" href="#precio">¡Quiero aprender ahora!</a></div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN ES -->
+<section>
+  <div class="wrap">
+    <h2 style="text-align:center;margin-bottom:1em">¿Es este curso para ti?</h2>
+    <div class="paraquien">
+      <div class="pq pq-si reveal">
+        <h3>Es para ti si…</h3>
+        <ul class="check">
+          <li>Ya tejes y dominas lo básico del crochet</li>
+          <li>Quieres crear diseños en relieve que casi nadie sabe hacer</li>
+          <li>Tienes o quieres un emprendimiento de tejido y buscas diferenciarte</li>
+          <li>Prefieres aprender paso a paso, a tu ritmo y con acceso de por vida</li>
+        </ul>
+      </div>
+      <div class="pq pq-no reveal">
+        <h3>Todavía no es para ti si…</h3>
+        <ul class="x">
+          <li>Estás empezando desde cero y aún no manejas los puntos básicos</li>
+        </ul>
+        <p class="pq-note">Aprende primero lo básico y vuelve cuando estés lista: el curso te estará esperando.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -678,7 +744,7 @@
 <!-- INSTRUCTORA -->
 <section style="background:var(--bg-alt)">
   <div class="wrap instructora">
-    <img class="reveal" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_700,h_700/v1789249710/ana-celia-instructora.jpg" alt="Ana Celia Rosas, creadora del Stamp Crochet">
+    <img loading="lazy" decoding="async" class="reveal" src="https://res.cloudinary.com/dplhu2z6j/image/upload/f_auto,q_auto,c_fill,w_700,h_700/v1789249710/ana-celia-instructora.jpg" alt="Ana Celia Rosas, creadora del Stamp Crochet">
     <div>
       <h2>Conoce a tu instructora</h2>
       <h3 style="color:var(--accent-ink)">Ana Celia Rosas</h3>
@@ -810,6 +876,11 @@
     </div>
   </div>
 </footer>
+
+<a class="wa-float" id="waFloat" href="https://wa.me/51987916201?text=Hola%20Ana%20Celia%2C%20quiero%20informaci%C3%B3n%20del%20Mega%20Curso%20Stamp%20Crochet" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.4A9.9 9.9 0 1 0 12.04 2Zm0 18.1c-1.5 0-2.95-.4-4.2-1.15l-.3-.18-3.1.82.83-3.02-.2-.31a8.1 8.1 0 1 1 6.97 3.84Zm4.45-6.05c-.24-.12-1.44-.71-1.66-.8-.22-.08-.39-.12-.55.12-.16.24-.63.8-.77.96-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.47-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+  <span>¿Dudas? Escríbenos</span>
+</a>
 
 <!-- Barra flotante de compra en móvil -->
 <div class="mobile-cta" id="mobileCta">
