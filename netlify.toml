@@ -19,3 +19,5 @@
   to = "/404.html"
   status = 404
   force = true
+
+# _headers y los demás archivos de la raíz se sirven tal cual
