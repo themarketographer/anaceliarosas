@@ -12,7 +12,12 @@
 
 const PIXEL_ID = process.env.META_PIXEL_ID || '923008885776318';
 const GRAPH_API_VERSION = 'v21.0';
-const ALLOWED_ORIGINS = ['https://anaceliarosas.com', 'https://www.anaceliarosas.com'];
+const ALLOWED_ORIGINS = [
+  'https://anaceliarosas.com',
+  'https://www.anaceliarosas.com',
+  'https://anaceliarosas.netlify.app',
+];
+const isPreview = (o) => /^https:\/\/[a-z0-9-]+--anaceliarosas\.netlify\.app$/.test(o);
 const ALLOWED_EVENTS = new Set([
   'PageView', 'ViewContent', 'InitiateCheckout', 'Contact',
   'CTAClick', 'ViewPricing', 'VideoPlay', 'VideoProgress', 'FAQOpen',
@@ -30,7 +35,7 @@ exports.handler = async (event) => {
 
   const origin = event.headers.origin || '';
   const isLocal = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
-  if (origin && !ALLOWED_ORIGINS.includes(origin) && !isLocal) return json(403, { error: 'Origin no permitido' });
+  if (origin && !ALLOWED_ORIGINS.includes(origin) && !isPreview(origin) && !isLocal) return json(403, { error: 'Origin no permitido' });
 
   const accessToken = process.env.META_CAPI_TOKEN;
   if (!accessToken) return json(500, { error: 'Falta META_CAPI_TOKEN en Netlify' });
